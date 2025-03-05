@@ -1,0 +1,226 @@
+<!--
+Author: Caleb Bronn
+Last Update: 3 Mar 2025
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="author" content="Caleb Bronn">
+	<meta
+		name="description"
+		content="A tutorial on how to make responsive image galleries with CSS Flex and Grid">
+	<title>CSS Technique</title>
+
+	<!-- highlight.js, a code syntax highlighter used by StackOverflow and Discord -->
+	<!-- GitHub Source: https://github.com/highlightjs/highlight.js -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+	<script>hljs.highlightAll();</script>
+
+	<!-- Google API Fonts -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Quicksand:wght@300..700&display=swap" 
+		rel="stylesheet">
+
+	<!-- External jQuery link to Google's API -->
+	<!-- It's likely users will already have this stored in their cache, which improves page load speed -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+	<!-- Link to JS script that inserts the example html code used in the tutorial into each div with the class "result" -->
+	<script src="js/jquery.result.js"></script>
+
+	<!-- CSS links for each step of the tutorial.
+		These apply only to elements with a "step<num>-gallery" ID.
+	-->
+	<link rel="stylesheet" href="css/step2.css">
+	<link rel="stylesheet" href="css/step3.css">
+	<link rel="stylesheet" href="css/step4.css">
+
+	<!-- Link to this page's actual stylesheet -->
+	<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+<header>
+	<!-- Title -->
+	<h1>CSS Technique: <br><span id="colored-title">Responsive Galleries</span>
+	</h1>
+
+	<!-- Navbar -->
+	<nav>
+		<ul>
+			<li><a href="#step1" onclick="smoothScroll('#step1');">
+				&lt;<span class="red-tag">Step</span> <span class="orange-attr">1</span>/&gt;
+			</a></li>
+			<li><a href="#step2" onclick="smoothScroll('#step2');">
+				&lt;<span class="red-tag">Step</span> <span class="orange-attr">2</span>/&gt;
+			</a></li>
+			<li><a href="#step3"  onclick="smoothScroll('#step3');">
+				&lt;<span class="red-tag">Step</span> <span class="orange-attr">3</span>/&gt;
+			</a></li>
+			<li><a href="#step4"  onclick="smoothScroll('#step4');">
+				&lt;<span class="red-tag">Step</span> <span class="orange-attr">4</span>/&gt;
+			</a></li>
+			<li><a href="#">
+				&lt;<span class="red-tag">More</span> <span class="orange-attr">Inspiration</span>/&gt;
+			</a></li>
+		</ul>
+	</nav>
+
+</header>
+
+<h2>&lt;!--Tutorial--&gt;</h2>
+
+<main id="tutorial">
+	<!-- Step 1 -->
+	<article id="step1">
+		<h3>Step 1</h3>
+		<h3>HTML Setup</h3>
+		<p>
+			Lorem ipsum odor amet, consectetuer adipiscing elit.
+			Molestie fermentum ac nostra nunc; massa tellus ultrices.
+			Congue ipsum accumsan sem nam, eleifend cursus montes.
+			Maecenas consequat viverra lectus cursus erat porttitor.
+			Etiam pharetra eu diam rutrum in senectus sollicitudin.
+		</p>
+	</article>
+	<!-- Use highlight.js classes here (e.g. prettyprint and language-html) for syntax highlighting -->
+	<pre><code class="language-html">&lt;!-- This goes in the body --&gt;
+&lt;div class="gallery">
+	&lt;div class="col">
+		&lt;img src="https://picsum.photos/720/621" alt="Lorum Picsum Image">
+		&lt;img src="https://picsum.photos/938/956" alt="Lorum Picsum Image">
+		&lt;img src="https://picsum.photos/635/784" alt="Lorum Picsum Image">
+	&lt;/div>
+	&lt;div class="col">
+		&lt;img src="https://picsum.photos/793/640" alt="Lorum Picsum Image">
+		&lt;img src="https://picsum.photos/783/626" alt="Lorum Picsum Image">
+		&lt;img src="https://picsum.photos/843/1000" alt="Lorum Picsum Image">
+	&lt;/div>
+	&lt;div class="col">
+		&lt;img src="https://picsum.photos/913/978" alt="Lorum Picsum Image">
+		&lt;img src="https://picsum.photos/666/668" alt="Lorum Picsum Image">
+		&lt;img src="https://picsum.photos/904/747" alt="Lorum Picsum Image">
+	&lt;/div>
+	&lt;div class="col">
+		&lt;img src="https://picsum.photos/858/998" alt="Lorum Picsum Image">
+		&lt;img src="https://picsum.photos/875/694" alt="Lorum Picsum Image">
+		&lt;img src="https://picsum.photos/642/922" alt="Lorum Picsum Image">
+	&lt;/div>
+&lt;/div>
+</code></pre>
+	
+	<!-- Step 2 -->
+	<article id="step2">
+		<h3>Step 2</h3>
+		<h3>Using CSS Grid to Create Columns</h3>
+		<p>
+			Lorem ipsum odor amet, consectetuer adipiscing elit.
+			Molestie fermentum ac nostra nunc; massa tellus ultrices.
+			Congue ipsum accumsan sem nam, eleifend cursus montes.
+			Maecenas consequat viverra lectus cursus erat porttitor.
+			Etiam pharetra eu diam rutrum in senectus sollicitudin.
+		</p>
+	</article>
+	<!-- Use highlight.js classes here for syntax highlighting -->
+	<pre><code class="language-css">* {
+	margin: 0;
+	box-sizing: border-box;
+}
+	
+.gallery {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 1rem;
+	padding: 1rem;
+}
+
+img {
+	width: 100%;
+}
+</code></pre>
+	<!-- Step 2 result -->
+	<div id="step2-gallery" class="result">
+		<h3>Result:</h3>
+	</div>
+
+	<!-- Step 3 -->
+	<article id="step3">
+		<h3>Step 3</h3>
+		<h3>Using CSS Flex to Spread the Images Evenly</h3>
+		<p>
+			Lorem ipsum odor amet, consectetuer adipiscing elit.
+			Molestie fermentum ac nostra nunc; massa tellus ultrices.
+			Congue ipsum accumsan sem nam, eleifend cursus montes.
+			Maecenas consequat viverra lectus cursus erat porttitor.
+			Etiam pharetra eu diam rutrum in senectus sollicitudin.
+		</p>
+	</article>
+	<!-- Use highlight.js classes here (e.g. prettyprint and language-html) for syntax highlighting -->
+	<pre><code class="language-css">img {
+	width: 100%;
+	/* These are new lines of code */
+	display: block;
+	object-fit: cover;
+}
+
+.col {
+	display: flex;
+	flex-flow: column nowrap;
+	gap: 1rem;
+}
+
+.col > * {
+	flex: 1 1 auto;
+}
+</code></pre>
+	<!-- Step 3 result -->
+	<div id="step3-gallery" class="result">
+		<h3>Result:</h3>
+	</div>
+
+	<!-- Step 4 -->
+	<article id="step4">
+		<h3>Step 4</h3>
+		<h3>Adding Res&shy;ponsive&shy;ness With Media Queries</h3>
+		<p>
+			Lorem ipsum odor amet, consectetuer adipiscing elit.
+			Molestie fermentum ac nostra nunc; massa tellus ultrices.
+			Congue ipsum accumsan sem nam, eleifend cursus montes.
+			Maecenas consequat viverra lectus cursus erat porttitor.
+			Etiam pharetra eu diam rutrum in senectus sollicitudin.
+		</p>
+	</article>
+	<!-- Use highlight.js classes here (e.g. prettyprint and language-html) for syntax highlighting -->
+	<pre><code class="language-css">@media screen and (max-width: 1200px) {
+	.gallery {
+		grid-template-columns: 1fr 1fr;
+	}
+}
+
+@media screen and (max-width: 800px) {
+	.gallery {
+		grid-template-columns: 1fr;
+	}
+}
+</code></pre>
+	<!-- Step 4 result -->
+	<div id="step4-gallery" class="result">
+		<h3>Result:</h3>
+		<p>(Adjust screen size to view changes)</p>
+	</div>
+	
+</main>
+
+<footer>
+	<!-- Link to codepens -->
+	<!-- Link to JetBrains Mono font -->
+	copyright Caleb Bronn 2025
+</footer>
+
+</body>
+</html>

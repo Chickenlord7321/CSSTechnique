@@ -1,0 +1,344 @@
+/* 
+Author: Caleb Bronn
+Last Update: 4 Mar 2025
+*/
+
+/********************
+ * RESET STYLESHEET *
+ ********************/
+*,
+*::before,
+*::after {
+	margin: 0;
+	box-sizing: border-box;
+}
+
+body {
+	font: 400 1rem/normal "Quicksand", sans-serif;
+}
+
+img, video, iframe {
+	max-width: 100%;
+}
+
+nav ul {
+	padding: 0;
+	list-style: none;
+}
+
+/*************
+ * VARIABLES *
+ *************/
+
+:root {
+	/* Colors */
+	--border-color: #B7B7B7;
+	--code-bg: #282c34;
+	--code-fg: #abb2bf;
+	--comment-color: #5c6370;
+	--title-bg: linear-gradient(to right,
+		#e06c75,
+		#d19a66,
+		#98c379
+	);
+
+	/* Padding / margin */
+	--tutorial-tb-pad: 2rem;
+	--tutorial-lr-pad: 1.5rem;
+}
+
+/* Set background color for body */
+body {
+	/* Alternative darker background */
+	/* background-image: radial-gradient(circle, 
+		#eef0f4, 
+		#e6eaf0, 
+		#dfe3ec, 
+		#d7dde9, 
+		#d0d7e5
+	); */
+	background-image: radial-gradient(circle, 
+		#ffffff, 
+		#f7f7f7, 
+		#eeeeee, 
+		#e6e6e6, 
+		#dedede
+	);
+	background-repeat: repeat-y;
+	background-size: 100vw 100vh;
+}
+
+/**********
+ * NAVBAR *
+ **********/
+
+html {
+	/* Sets the amount of invisible top padding for any element that the page "snaps" to.
+
+	I.e. when the user clicks on the "step 1" link in the navbar, the borwser takes them 
+	to the element that has the id #step1. However, the navbar will cover up part of the 
+	element because it's on top of everything else. So we give #step1 a top padding when
+	the browser "snaps" that id.
+
+	Available on all major browsers, it's only unavailable on Internet Explorer, but that's
+	a price I'm willing to pay.
+	https://caniuse.com/?search=scroll-snap-type
+	*/
+	scroll-snap-type: y mandatory;
+	scroll-padding-top: 10rem;
+}
+
+header {
+	/* Header sticks to the top of the screen */
+	position: sticky;
+	top: 0;
+	z-index: 100;
+	width: 100vw;
+	padding: 1.2rem 10%;		/* Matches the 80% width given to the tutorial section */
+
+	/* Space the title and nav as far apart as possible */
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 2rem;
+
+	/* Linear gradient based on the color of the atom-one-dark theme */
+	/* Site that generates gradients for you:
+		https://mycolor.space/gradient */
+	background-image: linear-gradient(to right, 
+		#3c434f, 
+		#373d48, 
+		#323741, 
+		#2d323b, 
+		#282c34
+	);
+}
+
+h1 {
+	font-size: 2rem;
+	color: #fff;
+}
+h1 #colored-title {
+	background-image: var(--title-bg);
+	background-clip: text;
+	color: transparent;
+}
+
+nav ul {
+	display: flex;
+	flex-flow: row wrap;
+	gap: 1em 1.5em;
+	/* Cosmetics */
+	font: 400 1.2rem/normal "JetBrains Mono", monospace;
+}
+
+nav ul > * {
+	/* The text of each step should not shrink, they should stay at the maximum size */
+	width: max-content;
+}
+
+nav a {
+	display: inline-block;
+	text-decoration: none;
+	color: var(--code-fg);
+	padding: 3px;
+	border-radius: 3px;
+	transition: background-color 0.3s ease;
+}
+nav a:hover {
+	background-color: var(--comment-color);
+}
+
+.current {
+	border-bottom: 3px solid #98c379;
+	border-radius: 3px 3px 0 0;
+}
+
+.red-tag {
+	color: #e06c75;
+}
+.orange-attr {
+	color: #d19a66;
+}
+
+/********************
+ * TUTORIAL SECTION *
+ ********************/
+
+h2 {
+	text-align: center;
+	font: 700 1.8rem/normal "JetBrains Mono", monospace;
+	color: var(--comment-color);
+	margin-top: 4rem;
+}
+
+#tutorial {
+	display: grid;
+	grid-template-columns: 4fr 6fr;
+	gap: 8rem 4rem;
+
+	width: 80%;
+	margin: 4rem auto;
+}
+
+#tutorial > * {
+	padding: var(--tutorial-tb-pad) var(--tutorial-lr-pad);
+	border-radius: 10px;
+	box-shadow: 0px 0px 15px var(--border-color);
+}
+
+#tutorial article {
+	display: grid;
+	grid-template-columns: max-content 3fr;
+	grid-template-rows: auto 1fr;
+	align-items: center;
+	gap: 10px 1rem;
+
+	background-color: #fff;
+}
+
+h3 {
+	color: var(--code-bg);
+	font-size: 1.4rem;
+	hyphens: auto;
+}
+
+/* Add a little border on the right to separate the step number from the step title */
+#tutorial article h3:nth-child(2) {
+	padding-left: 1rem;
+	border-left: 2px solid var(--border-color);
+}
+
+#tutorial article p {
+	/* Tutorial step descriptions should span the whole <article> 
+	element and be aligned at the start (top left). */
+	grid-column: 1 / span 2;
+	place-self: start;
+}
+
+/********************************
+ * STYLING FOR GALLERY EXAMPLES *
+ ********************************/
+
+.result {
+	/* The result examples should span the entire grid */
+	grid-column: 1 / span 2;
+	background-color: #fff;
+}
+
+.result h3, .result p {
+	margin-bottom: 10px;
+}
+
+.result > .gallery {
+	border: 3px dashed var(--border-color);
+}
+
+/***************************
+ * STYLING FOR CODE BLOCKS *
+ ***************************/
+
+/* (this is on top of the styling from highlight.js) */
+
+pre:has(code) {
+	/* code in a <pre> element will go beyond the borders of its parent, so we allow 
+	any overflowing text to scroll */
+	overflow: scroll;
+	position: relative;		/* For pseudo-elements with absolute positioning */
+	/* Same color used in "atom-one-dark" theme from highlight.js */
+	background-color: var(--code-bg);
+}
+
+/*? The .hljs class comes from highlight.js */
+pre code.hljs {
+	display: inline-block;	/* Can't add left padding unless element is block-level */
+
+	/* Add that little grey line you often see in text editors or IDEs.
+	I find it makes code easier to read, but maybe that's just cos I'm used to it.
+	*/
+	border-left: 1px solid var(--code-fg);
+	padding: 0 0 0 8px;
+	/* Using the JetBrains font cos I kinda like it, it's funky :P */
+	font: 400 1rem/normal "JetBrains Mono", monospace;
+	tab-size: 4;
+}
+
+/* 
+We add the filename at the top of the <pre> element so users can see which file they should 
+copy this code into. This just makes the tutorial easier to read and follow along with.
+*/
+code::before {
+	/* Default: html */
+	content: "index.html";
+	/* Cosmetics */
+	color: var(--code-fg);
+	font: 400 1rem/1 "JetBrains Mono", monospace;
+
+	/* Position in top right corner */
+	position: absolute;
+	top: calc((var(--tutorial-tb-pad) - 1rem) / 2);
+	left: var(--tutorial-lr-pad);
+}
+
+/* Lets the user know that CSS code goes in style.css */
+code.language-css::before {
+	content: "style.css";
+}
+
+
+/*****************
+ * MOBILE DESIGN *
+ *****************/
+
+@media screen and (max-width: 1100px) {
+	/* On smaller screens, the tutorial section
+	should be one big column instead of a grid */
+	#tutorial {
+		display: block;
+	}
+
+	#tutorial > * {
+		margin: 4rem 0;
+	}
+
+	/* At around the 1100px mark, the navbar stops being readable 
+	and needs to be converted into a column layout */
+	header {
+		flex-flow: column nowrap;
+		text-align: center;
+	}
+
+	/* We no longer need the h1 to be split into two lines, so we can remove the <br>.
+
+	I don't think this is the best way to handle a breakpoint, but I couldn't get
+	the 'break-before: always' property to work. So I'm using a 'hack' to solve the
+	problem.
+	*/
+	h1 br {
+		display: none;
+	}
+}
+
+/* Navbar breaks at the 1000px mark, so we center the links to make them easier to click */
+@media screen and (max-width: 1000px) {
+	nav ul {
+		justify-content: center;
+	}
+}
+
+/* On pure mobile/tablet screens, we descrease the font size and adjust the scrolling to 
+fit the new sizes */
+@media screen and (max-width: 800px) {
+	/* Decrease the font sizes for the headings */
+	h1, h2 {
+		font-size: 1.5rem;
+	}
+	h3 {
+		font-size: 1.2rem;
+	}
+
+	/* Aaaaand now we need to adjust the scroll padding too */
+	html {
+		scroll-padding-top: 16rem;
+	}
+}

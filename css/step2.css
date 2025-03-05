@@ -1,0 +1,15 @@
+.result * {
+	margin: 0;
+	box-sizing: border-box;
+}
+
+#step2-gallery .gallery {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 1rem;
+	padding: 1rem;
+}
+
+#step2-gallery img {
+	width: 100%;
+}

@@ -1,0 +1,40 @@
+* {
+	margin: 0;
+	box-sizing: border-box;
+}
+	
+.gallery {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 1rem;
+	padding: 1rem;
+}
+
+img {
+	width: 100%;
+	/* These are new lines of code */
+	display: block;
+	object-fit: cover;
+}
+
+.col {
+	display: flex;
+	flex-flow: column nowrap;
+	gap: 1rem;
+}
+
+.col > * {
+	flex: 1 1 auto;
+}
+
+@media screen and (max-width: 1200px) {
+	.gallery {
+		grid-template-columns: 1fr 1fr;
+	}
+}
+
+@media screen and (max-width: 800px) {
+	.gallery {
+		grid-template-columns: 1fr;
+	}
+}
