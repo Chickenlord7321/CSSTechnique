@@ -1,6 +1,6 @@
 <!--
 Author: Caleb Bronn
-Last Update: 3 Mar 2025
+Last Update: 10 Mar 2025
 -->
 
 <!DOCTYPE html>
@@ -53,19 +53,19 @@ Last Update: 3 Mar 2025
 	<!-- Navbar -->
 	<nav>
 		<ul>
-			<li><a href="#step1" onclick="smoothScroll('#step1');">
+			<li><a href="#step1">
 				&lt;<span class="red-tag">Step</span> <span class="orange-attr">1</span>/&gt;
 			</a></li>
-			<li><a href="#step2" onclick="smoothScroll('#step2');">
+			<li><a href="#step2">
 				&lt;<span class="red-tag">Step</span> <span class="orange-attr">2</span>/&gt;
 			</a></li>
-			<li><a href="#step3"  onclick="smoothScroll('#step3');">
+			<li><a href="#step3">
 				&lt;<span class="red-tag">Step</span> <span class="orange-attr">3</span>/&gt;
 			</a></li>
-			<li><a href="#step4"  onclick="smoothScroll('#step4');">
+			<li><a href="#step4">
 				&lt;<span class="red-tag">Step</span> <span class="orange-attr">4</span>/&gt;
 			</a></li>
-			<li><a href="#">
+			<li><a href="#more-inspiration">
 				&lt;<span class="red-tag">More</span> <span class="orange-attr">Inspiration</span>/&gt;
 			</a></li>
 		</ul>
@@ -76,16 +76,50 @@ Last Update: 3 Mar 2025
 <h2>&lt;!--Tutorial--&gt;</h2>
 
 <main id="tutorial">
+	<!-- Introduction -->
+	<article>
+		<div>
+			<h3>Intro</h3>
+			<h3>What You Can Learn From This Tutorial</h3>
+		</div>
+		<p>
+			This tutuorial covers the basics of creating a vertically-oriented gallery with only CSS Flex and Grid.
+			Using Flex and Grid, we are able to create a gallery that works for all different sizes of images. The 
+			styling of these images, however, is an exercise left to the reader. The intention of this tutorial is 
+			to give you a foundation from which to work, while allowing you the freedom to choose how you want the 
+			design the gallery.
+		</p>
+		<p>
+			The video to the right goes through the process of creating a gallery in real time, explaining what the 
+			code does and how it works.
+		</p>
+	</article>
+	<div>
+		<h3>Video Tutuorial</h3>
+		<video width="400" height="300" controls>
+			<source src="video/tutorial.mp4" type="video/mp4">
+			Your browser does not support the video tag.
+		</video>
+	</div>
+
 	<!-- Step 1 -->
 	<article id="step1">
-		<h3>Step 1</h3>
-		<h3>HTML Setup</h3>
+		<div>
+			<h3>Step 1</h3>
+			<h3>HTML Setup</h3>
+		</div>
 		<p>
-			Lorem ipsum odor amet, consectetuer adipiscing elit.
-			Molestie fermentum ac nostra nunc; massa tellus ultrices.
-			Congue ipsum accumsan sem nam, eleifend cursus montes.
-			Maecenas consequat viverra lectus cursus erat porttitor.
-			Etiam pharetra eu diam rutrum in senectus sollicitudin.
+			First, we create and set up an index.html file for our Responsive Gallery website. You can 
+			<a href="./materials/index.html" download>download</a> the file directly if you would like, 
+			or create your own.
+		</p>
+		<p>
+			We populate index.html with a div called "gallery", and inside we create 4 divs to be the columns.
+			Within those columns you can include as many img elements as you want. In this example, we are 
+			using images sourced from <a href="https://picsum.photos/">Lorum Picsum</a>, a site which provides 
+			random images from their database. The images have random widths and heights between 600 and 1,000 
+			pixels.
+
 		</p>
 	</article>
 	<!-- Use highlight.js classes here (e.g. prettyprint and language-html) for syntax highlighting -->
@@ -116,8 +150,10 @@ Last Update: 3 Mar 2025
 	
 	<!-- Step 2 -->
 	<article id="step2">
-		<h3>Step 2</h3>
-		<h3>Using CSS Grid to Create Columns</h3>
+		<div>
+			<h3>Step 2</h3>
+			<h3>Using CSS Grid to Create Columns</h3>
+		</div>
 		<p>
 			Lorem ipsum odor amet, consectetuer adipiscing elit.
 			Molestie fermentum ac nostra nunc; massa tellus ultrices.
@@ -135,8 +171,8 @@ Last Update: 3 Mar 2025
 .gallery {
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
-	gap: 1rem;
-	padding: 1rem;
+	gap: 20px;
+	padding: 20px;
 }
 
 img {
@@ -150,8 +186,10 @@ img {
 
 	<!-- Step 3 -->
 	<article id="step3">
-		<h3>Step 3</h3>
-		<h3>Using CSS Flex to Spread the Images Evenly</h3>
+		<div>
+			<h3>Step 3</h3>
+			<h3>Using CSS Flex to Spread the Images Evenly</h3>
+		</div>
 		<p>
 			Lorem ipsum odor amet, consectetuer adipiscing elit.
 			Molestie fermentum ac nostra nunc; massa tellus ultrices.
@@ -171,7 +209,7 @@ img {
 .col {
 	display: flex;
 	flex-flow: column nowrap;
-	gap: 1rem;
+	gap: 20px;
 }
 
 .col > * {
@@ -185,8 +223,10 @@ img {
 
 	<!-- Step 4 -->
 	<article id="step4">
-		<h3>Step 4</h3>
-		<h3>Adding Res&shy;ponsive&shy;ness With Media Queries</h3>
+		<div>
+			<h3>Step 4</h3>
+			<h3>Adding Res&shy;ponsive&shy;ness With Media Queries</h3>
+		</div>
 		<p>
 			Lorem ipsum odor amet, consectetuer adipiscing elit.
 			Molestie fermentum ac nostra nunc; massa tellus ultrices.
@@ -196,13 +236,13 @@ img {
 		</p>
 	</article>
 	<!-- Use highlight.js classes here (e.g. prettyprint and language-html) for syntax highlighting -->
-	<pre><code class="language-css">@media screen and (max-width: 1200px) {
+	<pre><code class="language-css">@media screen and (max-width: 1000px) {
 	.gallery {
 		grid-template-columns: 1fr 1fr;
 	}
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 600px) {
 	.gallery {
 		grid-template-columns: 1fr;
 	}
@@ -213,13 +253,55 @@ img {
 		<h3>Result:</h3>
 		<p>(Adjust screen size to view changes)</p>
 	</div>
+
+	<!-- More Inspiration -->
+	<article id="more-inspiration">
+		<div>
+			<h3>More Inspiration</h3>
+			<h3>What Else Can You Do?</h3>
+		</div>
+		<p>
+			Lorem ipsum odor amet, consectetuer adipiscing elit.
+			Molestie fermentum ac nostra nunc; massa tellus ultrices.
+			Congue ipsum accumsan sem nam, eleifend cursus montes.
+			Maecenas consequat viverra lectus cursus erat porttitor.
+			Etiam pharetra eu diam rutrum in senectus sollicitudin.
+		</p>
+	</article>
+
+	<!-- This is a CodePen I created to demonstrate how you can add text and scrolling to this gallery design -->
+	<!-- The code is embedded from CodePen.io -->
+	<p class="codepen" data-height="300" data-default-tab="html,result" data-slug-hash="NPWPmYq" data-pen-title="Vertically-Oriented Gallery" data-user="Chickenlord7321" 
+		style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+		<span>
+			See the Pen <a href="https://codepen.io/Chickenlord7321/pen/NPWPmYq">Vertically-Oriented Gallery</a> by Chickenlord7321 (<a href="https://codepen.io/Chickenlord7321">@Chickenlord7321</a>) on <a href="https://codepen.io">CodePen</a>.
+		</span>
+	</p>
+	<script async src="https://public.codepenassets.com/embed/index.js"></script>
 	
 </main>
 
 <footer>
 	<!-- Link to codepens -->
-	<!-- Link to JetBrains Mono font -->
-	copyright Caleb Bronn 2025
+	<div id="codepens">
+		<h3>Leverage This Technique With These CodePens</h3>
+		<a href="https://codepen.io/Chickenlord7321/pen/NPWPmYq">Vertically-Oriented Gallery</a>
+		<a href="https://codepen.io/Chickenlord7321/pen/raNmVoP">Gallery With Text</a>
+		<a href="https://codepen.io/Chickenlord7321/pen/OPJPdLy">Free-Flowing Gallery</a>
+	</div>
+
+	<!-- Credits -->
+	<div id="credits">
+		<h3>Credits</h3>
+		<p>Website design by</p><p>Caleb Bronn</p>
+		<p>Tutorial written by</p><p>Zarin Rasul & Caleb Bronn</p>
+		<p>CodePen examples by</p><p>Caleb Bronn</p>
+		<p>Video production by</p><p>Caleb Bronn</p>
+		<p>Video editing by</p><p>Caleb Bronn</p>
+	</div>
+
+	<!-- Copyright -->
+	<p id="copyright">© Caleb Bronn & Zarin Rasul 2025</p>
 </footer>
 
 </body>

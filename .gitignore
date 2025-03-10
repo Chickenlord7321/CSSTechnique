@@ -1,2 +1,5 @@
 # Ignore prettier config files
 .prettierrc
+
+# Ignore word files
+*.docx

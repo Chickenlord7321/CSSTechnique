@@ -1,6 +1,6 @@
 /* 
 Author: Caleb Bronn
-Last Update: 4 Mar 2025
+Last Update: 10 Mar 2025
 */
 
 /********************
@@ -14,7 +14,7 @@ Last Update: 4 Mar 2025
 }
 
 body {
-	font: 400 1rem/normal "Quicksand", sans-serif;
+	font: 400 1rem/1.3 "Quicksand", sans-serif;
 }
 
 img, video, iframe {
@@ -41,6 +41,13 @@ nav ul {
 		#d19a66,
 		#98c379
 	);
+	--nav-bg: linear-gradient(to right, 
+		#3c434f, 
+		#373d48, 
+		#323741, 
+		#2d323b, 
+		#282c34
+	);
 
 	/* Padding / margin */
 	--tutorial-tb-pad: 2rem;
@@ -49,14 +56,6 @@ nav ul {
 
 /* Set background color for body */
 body {
-	/* Alternative darker background */
-	/* background-image: radial-gradient(circle, 
-		#eef0f4, 
-		#e6eaf0, 
-		#dfe3ec, 
-		#d7dde9, 
-		#d0d7e5
-	); */
 	background-image: radial-gradient(circle, 
 		#ffffff, 
 		#f7f7f7, 
@@ -105,13 +104,7 @@ header {
 	/* Linear gradient based on the color of the atom-one-dark theme */
 	/* Site that generates gradients for you:
 		https://mycolor.space/gradient */
-	background-image: linear-gradient(to right, 
-		#3c434f, 
-		#373d48, 
-		#323741, 
-		#2d323b, 
-		#282c34
-	);
+	background-image: var(--nav-bg)
 }
 
 h1 {
@@ -187,14 +180,28 @@ h2 {
 	box-shadow: 0px 0px 15px var(--border-color);
 }
 
+/* Center videos */
+#tutorial div:has(iframe, video) {
+	text-align: center;
+}
+
+video {
+	width: 100%;
+}
+
 #tutorial article {
+	background-color: #fff;
+}
+
+#tutorial p {
+	margin-top: 1rem;
+}
+
+#tutorial article > div {
 	display: grid;
 	grid-template-columns: max-content 3fr;
-	grid-template-rows: auto 1fr;
 	align-items: center;
-	gap: 10px 1rem;
-
-	background-color: #fff;
+	gap: 1rem;
 }
 
 h3 {
@@ -207,13 +214,6 @@ h3 {
 #tutorial article h3:nth-child(2) {
 	padding-left: 1rem;
 	border-left: 2px solid var(--border-color);
-}
-
-#tutorial article p {
-	/* Tutorial step descriptions should span the whole <article> 
-	element and be aligned at the start (top left). */
-	grid-column: 1 / span 2;
-	place-self: start;
 }
 
 /********************************
@@ -285,6 +285,55 @@ code.language-css::before {
 	content: "style.css";
 }
 
+/**********
+ * FOOTER *
+ **********/
+footer {
+	/* Same size and background gradient as header */
+	width: 100vw;
+	padding: 2rem 10%;
+	background-image: var(--nav-bg);
+	color: #fff;
+
+	/* Place the examples and credits side by side in a grid */
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 2rem 10%;
+}
+
+footer a {
+	display: block;
+	max-width: 50%;
+	text-decoration: none;
+	color: #e06c75;
+	transition: all 0.3s;
+}
+footer a:hover {
+	color: #98c379;
+}
+
+#codepens > * {
+	/* Achieves the same effect as the gap property in #credits */
+	margin-bottom: 1rem;
+}
+
+#credits {
+	display: grid;
+	grid-template-columns: auto auto;
+	gap: 1rem 20%;
+}
+
+footer div > *:not(h3) {
+	/* Adding a bottom border makes the credits look neater and more professional */
+	padding-bottom: 0.2rem;
+	border-bottom: 1px solid var(--border-color);
+}
+
+footer h3, #copyright {
+	color: #fff;
+	grid-column: 1 / span 2;
+}
+
 
 /*****************
  * MOBILE DESIGN *
@@ -340,5 +389,13 @@ fit the new sizes */
 	/* Aaaaand now we need to adjust the scroll padding too */
 	html {
 		scroll-padding-top: 16rem;
+	}
+
+	/* Change footer to be single-column */
+	footer {
+		grid-template-columns: 1fr;
+	}
+	#copyright {
+		grid-column: 1 / span 1;
 	}
 }
