@@ -6,10 +6,11 @@
 #step2-gallery .gallery {
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
-	gap: 1rem;
-	padding: 1rem;
+	gap: 20px;
+	padding: 20px;
 }
 
 #step2-gallery img {
 	width: 100%;
+	display: block;
 }

@@ -13,17 +13,19 @@ Last Update: 10 Mar 2025
 	box-sizing: border-box;
 }
 
-body {
-	font: 400 1rem/1.3 "Quicksand", sans-serif;
-}
-
-img, video, iframe {
-	max-width: 100%;
-}
-
+/* Undo unordered list */
 nav ul {
 	padding: 0;
 	list-style: none;
+}
+
+/* Choose fonts */
+body {
+	font: 400 1rem/1.5 "Montserrat", serif;
+}
+
+h1, h2, h3 {
+	font-family: "Quicksand", sans-serif;
 }
 
 /*************
@@ -65,6 +67,15 @@ body {
 	);
 	background-repeat: repeat-y;
 	background-size: 100vw 100vh;
+}
+
+/* Change the default colors for <a> element */
+#tutorial a, footer a {
+	color: #e06c75;
+	transition: all 0.3s;
+}
+#tutorial a:hover, footer a:hover {
+	color: #98c379;
 }
 
 /**********
@@ -181,12 +192,9 @@ h2 {
 }
 
 /* Center videos */
-#tutorial div:has(iframe, video) {
+#tutorial div:has(video) {
 	text-align: center;
-}
-
-video {
-	width: 100%;
+	background-color: #fff;
 }
 
 #tutorial article {
@@ -195,9 +203,22 @@ video {
 
 #tutorial p {
 	margin-top: 1rem;
+	text-align: justify;
 }
 
+/* Some size settings to make the video fit, but not get too large */
+video {
+	margin-top: 1rem;
+	max-width: 100%;
+	max-height: 400px;
+	height: auto;
+	width: auto;
+}
+
+/* Styling each step's heading */
+
 #tutorial article > div {
+	/* Using grid allows us to separate the step number from the title of each step */
 	display: grid;
 	grid-template-columns: max-content 3fr;
 	align-items: center;
@@ -214,6 +235,12 @@ h3 {
 #tutorial article h3:nth-child(2) {
 	padding-left: 1rem;
 	border-left: 2px solid var(--border-color);
+}
+
+/* This is specifically targeting the CodePen embedded code to make it fit the grid child it's in */
+iframe {
+	width: 100%;
+	height: 100%;
 }
 
 /********************************
@@ -302,14 +329,10 @@ footer {
 }
 
 footer a {
+	text-decoration: none;
+	/* Limit the width of the <a>'s so they match the credits section */
 	display: block;
 	max-width: 50%;
-	text-decoration: none;
-	color: #e06c75;
-	transition: all 0.3s;
-}
-footer a:hover {
-	color: #98c379;
 }
 
 #codepens > * {
@@ -360,8 +383,8 @@ footer h3, #copyright {
 	/* We no longer need the h1 to be split into two lines, so we can remove the <br>.
 
 	I don't think this is the best way to handle a breakpoint, but I couldn't get
-	the 'break-before: always' property to work. So I'm using a 'hack' to solve the
-	problem.
+	the 'break-before: always' property to work. So I'm using a hack to solve the
+	problem :P
 	*/
 	h1 br {
 		display: none;
@@ -392,10 +415,7 @@ fit the new sizes */
 	}
 
 	/* Change footer to be single-column */
-	footer {
-		grid-template-columns: 1fr;
-	}
-	#copyright {
-		grid-column: 1 / span 1;
+	footer > * {
+		grid-column: 1 / span 2;
 	}
 }

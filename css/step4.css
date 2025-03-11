@@ -6,8 +6,8 @@
 #step4-gallery .gallery {
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
-	gap: 1rem;
-	padding: 1rem;
+	gap: 20px;
+	padding: 20px;
 }
 
 #step4-gallery img {
@@ -19,19 +19,19 @@
 #step4-gallery .col {
 	display: flex;
 	flex-flow: column nowrap;
-	gap: 1rem;
+	gap: 20px;
 }
 
 #step4-gallery .col > * {
 	flex: 1 1 auto;
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 800px) {
 	#step4-gallery .gallery {
 		grid-template-columns: 1fr 1fr;
 	}
 }
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 500px) {
 	#step4-gallery .gallery {
 		grid-template-columns: 1fr;
 	}

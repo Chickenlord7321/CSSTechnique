@@ -6,8 +6,8 @@
 #step3-gallery .gallery {
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
-	gap: 1rem;
-	padding: 1rem;
+	gap: 20px;
+	padding: 20px;
 }
 
 #step3-gallery img {
@@ -19,7 +19,7 @@
 #step3-gallery .col {
 	display: flex;
 	flex-flow: column nowrap;
-	gap: 1rem;
+	gap: 20px;
 }
 
 #step3-gallery .col > * {
