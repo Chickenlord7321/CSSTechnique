@@ -23,8 +23,8 @@ Last Update: 10 Mar 2025
 	<!-- Google API Fonts -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Quicksand:wght@300..700&display=swap" 
-		rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Quicksand:wght@300..700&display=swap" 
+	rel="stylesheet">
 
 	<!-- External jQuery link to Google's API -->
 	<!-- It's likely users will already have this stored in their cache, which improves page load speed -->
@@ -47,8 +47,7 @@ Last Update: 10 Mar 2025
 <body>
 <header>
 	<!-- Title -->
-	<h1>CSS Technique: <br><span id="colored-title">Responsive Galleries</span>
-	</h1>
+	<h1>CSS Technique: <br><span id="colored-title">Responsive Galleries</span></h1>
 
 	<!-- Navbar -->
 	<nav>
@@ -83,20 +82,22 @@ Last Update: 10 Mar 2025
 			<h3>What You Can Learn From This Tutorial</h3>
 		</div>
 		<p>
-			This tutuorial covers the basics of creating a vertically-oriented gallery with only CSS Flex and Grid.
-			Using Flex and Grid, we are able to create a gallery that works for all different sizes of images. The 
-			styling of these images, however, is an exercise left to the reader. The intention of this tutorial is 
-			to give you a foundation from which to work, while allowing you the freedom to choose how you want the 
-			design the gallery.
+			This tutorial covers the basics of creating a vertically-oriented gallery with only CSS Flex and Grid.
+			Using Flex and Grid, we are able to create a gallery that works for all different sizes of images.
 		</p>
 		<p>
-			The video to the right goes through the process of creating a gallery in real time, explaining what the 
-			code does and how it works.
+			The styling of these images, however, is left open to you. The intention of this tutorial is 
+			to give you a foundation from which to work, while allowing you the freedom to choose how you want to 
+			design the gallery. Go wild with it!
+		</p>
+		<p>
+			The video to the right will walk you through the process of creating a gallery in real time, explaining 
+			what the code does and how it works.
 		</p>
 	</article>
 	<div>
-		<h3>Video Tutuorial</h3>
-		<video width="400" height="300" controls>
+		<h3>Video Tutorial</h3>
+		<video width="1280" height="720" controls>
 			<source src="video/tutorial.mp4" type="video/mp4">
 			Your browser does not support the video tag.
 		</video>
@@ -119,7 +120,10 @@ Last Update: 10 Mar 2025
 			using images sourced from <a href="https://picsum.photos/">Lorum Picsum</a>, a site which provides 
 			random images from their database. The images have random widths and heights between 600 and 1,000 
 			pixels.
-
+		</p>
+		<p>
+			If you want, you can change the number of columns to 6, 8, 19, even 100 &mdash; anything you want! Just be sure 
+			to adapt your CSS to account for the new columns.
 		</p>
 	</article>
 	<!-- Use highlight.js classes here (e.g. prettyprint and language-html) for syntax highlighting -->
@@ -155,11 +159,23 @@ Last Update: 10 Mar 2025
 			<h3>Using CSS Grid to Create Columns</h3>
 		</div>
 		<p>
-			Lorem ipsum odor amet, consectetuer adipiscing elit.
-			Molestie fermentum ac nostra nunc; massa tellus ultrices.
-			Congue ipsum accumsan sem nam, eleifend cursus montes.
-			Maecenas consequat viverra lectus cursus erat porttitor.
-			Etiam pharetra eu diam rutrum in senectus sollicitudin.
+			Next, we create a new file and title it style.css (or <a href="materials/style.css">download</a> it instead). 
+			Before we get started making the gallery, let's 
+			create a little reset stylesheet for ourselves. We'll target every element with (*) and set the margin 
+			to 0, getting rid of the browser's default margin on the body. We also set the box-sizing to border box. 
+			This means that when we specify a width for an element, the width <em>includes</em> the padding and border, 
+			allowing us to be more precise.
+		</p>
+		<p>
+			Then we use display:grid and the repeat function to create a 4-column layout. Add some gap/padding if 
+			you like. Finally, we limit the images to be 100% the width of the columns.
+		</p>
+		<p>
+			Notice that there are thin gaps between each image in the columns. Since images are inline elements, the 
+			browser actually treats them as if they are "text". That means they have line height, which is what gives 
+			us those thin gaps. We <em>could</em> fix this by giving the columns a line height of 0, but then if you 
+			had any text inside the columns, it wouldn't show up. Instead, we can simply set the images to be block-level, 
+			which solves the problem and avoids affecting other elements.
 		</p>
 	</article>
 	<!-- Use highlight.js classes here for syntax highlighting -->
@@ -177,6 +193,7 @@ Last Update: 10 Mar 2025
 
 img {
 	width: 100%;
+	display: block;
 }
 </code></pre>
 	<!-- Step 2 result -->
@@ -191,18 +208,25 @@ img {
 			<h3>Using CSS Flex to Spread the Images Evenly</h3>
 		</div>
 		<p>
-			Lorem ipsum odor amet, consectetuer adipiscing elit.
-			Molestie fermentum ac nostra nunc; massa tellus ultrices.
-			Congue ipsum accumsan sem nam, eleifend cursus montes.
-			Maecenas consequat viverra lectus cursus erat porttitor.
-			Etiam pharetra eu diam rutrum in senectus sollicitudin.
+			Okay, this is looking pretty good, but how can we get all the columns to line up at the bottom? That's 
+			where Flex comes in. We turn each column into a flex container (oriented as "column nowrap"), then 
+			we target all direct children of the columns (col > *) and use the "flex" shorthand property to set the 
+			flex-grow and flex-shrink to 1. Setting these properties to 1 means that the images can grow or shrink as 
+			needed to fit their container, but their growth-rate is a one-to-one ratio. In other words, the images 
+			must grow and shrink in proportion to each other.
+		</p>
+		<p>
+			However, we now have a problem. The images are being stretched to fit the column height, and they no longer 
+			maintain their aspect ratios. We can set the object-fit to "cover" to make the images maintain their aspect 
+			ratios. Object-fit tells the browser that if the images are too large for their container, the browser should 
+			clip parts of the edges off to make them fit. Now the images aren't stretched anymore!
 		</p>
 	</article>
 	<!-- Use highlight.js classes here (e.g. prettyprint and language-html) for syntax highlighting -->
 	<pre><code class="language-css">img {
 	width: 100%;
-	/* These are new lines of code */
 	display: block;
+	/* This line of code is new */
 	object-fit: cover;
 }
 
@@ -228,11 +252,10 @@ img {
 			<h3>Adding Res&shy;ponsive&shy;ness With Media Queries</h3>
 		</div>
 		<p>
-			Lorem ipsum odor amet, consectetuer adipiscing elit.
-			Molestie fermentum ac nostra nunc; massa tellus ultrices.
-			Congue ipsum accumsan sem nam, eleifend cursus montes.
-			Maecenas consequat viverra lectus cursus erat porttitor.
-			Etiam pharetra eu diam rutrum in senectus sollicitudin.
+			Now our last step is making the gallery responsive with media queries. All we need to do is find a viewport 
+			width (known as a breakpoint) where the images start looking to small, and then decrease the number of columns. 
+			You can choose any breakpoints you like; in our example, we change the gallery to a 2-column layout at the 
+			800px mark, and a 1-column layout at the 500px mark.
 		</p>
 	</article>
 	<!-- Use highlight.js classes here (e.g. prettyprint and language-html) for syntax highlighting -->
@@ -261,17 +284,22 @@ img {
 			<h3>What Else Can You Do?</h3>
 		</div>
 		<p>
-			Lorem ipsum odor amet, consectetuer adipiscing elit.
-			Molestie fermentum ac nostra nunc; massa tellus ultrices.
-			Congue ipsum accumsan sem nam, eleifend cursus montes.
-			Maecenas consequat viverra lectus cursus erat porttitor.
-			Etiam pharetra eu diam rutrum in senectus sollicitudin.
+			Ta-da! That's all you need to create a responsive, stylish image gallery all on your own! All that's 
+			left is for you to go out there and start adding your designs and ideas. Maybe you want to have the 
+			photographer's name pop up when the user hovers over the image, or add more columns, or change the 
+			columns into rows instead. You could even animate the columns so they scroll up and down!
+		</p>
+		<p>
+			All of these ideas, and many more, are possible. In the <a href="https://codepen.io/Chickenlord7321/pen/NPWPmYq">CodePen</a> 
+			on the left, you can view how to achieve some of those ideas already. Play around with the code and 
+			see what happens! There are a handful of CodePen example in the footer below this section to get the 
+			ideas flowing, but when it comes to image galleries, the world is your oyster.
 		</p>
 	</article>
 
 	<!-- This is a CodePen I created to demonstrate how you can add text and scrolling to this gallery design -->
 	<!-- The code is embedded from CodePen.io -->
-	<p class="codepen" data-height="300" data-default-tab="html,result" data-slug-hash="NPWPmYq" data-pen-title="Vertically-Oriented Gallery" data-user="Chickenlord7321" 
+	<p class="codepen" data-height="400" data-default-tab="html,result" data-slug-hash="NPWPmYq" data-pen-title="Vertically-Oriented Gallery" data-user="Chickenlord7321" 
 		style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
 		<span>
 			See the Pen <a href="https://codepen.io/Chickenlord7321/pen/NPWPmYq">Vertically-Oriented Gallery</a> by Chickenlord7321 (<a href="https://codepen.io/Chickenlord7321">@Chickenlord7321</a>) on <a href="https://codepen.io">CodePen</a>.
